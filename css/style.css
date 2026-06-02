@@ -1,0 +1,719 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #d4af37;
+    --primary-foreground: #f5f3f0;
+    --secondary: #8b9d83;
+    --background: #f5f3f0;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --muted: #e8e6e3;
+    --muted-foreground: #6b6b6b;
+    --border: #e8e6e3;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 1280px;
+}
+
+@media (min-width: 640px) {
+    .container { padding: 0 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+    .container { padding: 0 2rem; }
+}
+
+/* Navigation Layout */
+nav {
+    background-color: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-circle {
+    background-color: var(--foreground);
+    color: var(--background);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.nav-menu {
+    display: none;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .nav-menu { display: flex; }
+}
+
+.nav-menu a {
+    color: var(--foreground);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-actions button {
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.nav-actions button:hover {
+    background-color: var(--muted);
+}
+
+/* Embedded Search Bar styling */
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: var(--muted);
+    border-radius: 1.5rem;
+    padding: 0.2rem 0.6rem;
+    margin-right: 0.25rem;
+    border: 1px solid transparent;
+}
+.search-wrapper input {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0.25rem;
+    font-size: 0.85rem;
+    width: 130px;
+    font-family: 'Poppins', sans-serif;
+}
+.search-wrapper button {
+    background: none !important;
+    border: none !important;
+    cursor: pointer;
+    padding: 0 !important;
+}
+
+/* NEW: Favorite Navbar Button next to Cart */
+.favorite-nav-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.favorite-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e63946; /* Red color for heart badge */
+    color: white;
+    font-size: 0.7rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.cart-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 0.7rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Marquee Top Banner bar */
+.marquee-section {
+    background-color: var(--foreground);
+    color: var(--background);
+    padding: 0.5rem 0;
+    overflow: hidden;
+}
+
+.marquee-text {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+}
+
+.marquee-text span {
+    padding: 0 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Hero Display Styling Section */
+.hero {
+    background-size: cover;
+    background-position: center;
+    padding: 8rem 0 10rem 0;
+    position: relative;
+    color: white;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.hero-label {
+    color: var(--primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.9);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Interactive White Marquee below Hero section */
+.white-marquee-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    z-index: 10;
+}
+.white-marquee-inner {
+    display: flex;
+    white-space: nowrap;
+    padding: 0.7rem 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    animation: smoothMarqueeWhite 22s linear infinite;
+}
+.white-marquee-inner span {
+    display: inline-block;
+    padding: 0 2.5rem;
+}
+@keyframes smoothMarqueeWhite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Section Components Layout setup */
+section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-label {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+}
+
+.section-title h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.section-title p {
+    color: var(--muted-foreground);
+}
+
+/* General Buttons elements */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #bfa030;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: white;
+    color: var(--foreground);
+}
+
+/* Categories Section Blocks UI */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.category-card {
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 0.25rem;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}
+
+.category-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+}
+
+.category-name {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Individual Product Cards Architecture Grid layout view */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--foreground);
+    color: var(--background);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.125rem;
+}
+
+/* Embedded Favorite Heart icon button styling structure */
+.card-favorite-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+    z-index: 5;
+}
+.card-favorite-btn:hover {
+    transform: scale(1.1);
+}
+
+.product-info {
+    padding: 1.25rem;
+}
+
+.product-category {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.product-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.product-rating {
+    font-size: 0.875rem;
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.product-price .original {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+    font-weight: normal;
+}
+
+/* Features Grid Layout components area */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+/* Newsletter section element container styles view layout */
+.newsletter {
+    background-color: var(--foreground);
+    color: var(--background);
+    text-align: center;
+}
+
+.newsletter h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.newsletter p {
+    color: var(--muted-foreground);
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+/* Modal Popup Core Overlay and structure details layout view css */
+.custom-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+.custom-modal-container {
+    background-color: white;
+    max-width: 720px;
+    width: 100%;
+    border-radius: 0.5rem;
+    position: relative;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: zoomInModal 0.2s ease-out;
+}
+.custom-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.1rem;
+    background: var(--muted);
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+}
+.modal-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 640px) {
+    .modal-detail-grid { grid-template-columns: 1fr 1fr; }
+}
+.modal-detail-img img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 0.35rem;
+}
+.modal-detail-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.modal-detail-cat {
+    font-size: 0.8rem;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.modal-detail-info h2 {
+    font-size: 1.8rem;
+    margin: 0.3rem 0;
+}
+.modal-detail-price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 0.6rem;
+}
+.modal-detail-orig {
+    font-size: 0.9rem;
+    color: var(--muted-foreground);
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+}
+.modal-detail-desc {
+    font-size: 0.88rem;
+    color: var(--muted-foreground);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+@keyframes zoomInModal {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Footer structure and properties config details css file layout */
+footer {
+    background-color: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 4rem 0 2rem 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section h4 {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.footer-section a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+/* Responsive properties definitions styling */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero p { font-size: 1rem; }
+    .hero-buttons { flex-direction: column; }
+    .btn { width: 100%; text-align: center; }
+    section { padding: 3rem 0; }
+    .section-title h2 { font-size: 1.5rem; }
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+}
+
+.bg-white { background-color: white; }
+.py-20 { padding: 5rem 0; }
+.text-center { text-align: center; }
+.mt-16 { margin-top: 4rem; }
+.relative { position: relative; }
